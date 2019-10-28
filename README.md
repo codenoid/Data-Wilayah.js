@@ -5,7 +5,7 @@ Indonesian territory data in JavaScript
 
 ## Usage
 
-```
+```html
 // put this before your code
 <script src="https://cdn.jsdelivr.net/gh/codenoid/Data-Wilayah.js/wilayah.js" type="text/javascript"></script>
 <script>
