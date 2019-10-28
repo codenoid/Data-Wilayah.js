@@ -1,6 +1,10 @@
 # Data-Wilayah.js
 Indonesian territory data in JavaScript
 
+<p align="center">
+  <img src="https://kyotoreview.org/wp-content/uploads/Indonesia-map-678x381.jpg">
+</p>
+
 ## Usage
 
 ```
