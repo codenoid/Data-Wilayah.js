@@ -16,7 +16,7 @@ for (const [key, value] of Object.entries(ID_PROVINSI)) {
 function getAddress(nik) {
 	// convert nik to string
     nik = nik.toString()
-    
+
     var get_province = nik.substring(0,2)
     var get_kabupaten = nik.substring(2,4)
     var get_kecamatan = nik.substring(4,6)
@@ -37,7 +37,8 @@ function getAddress(nik) {
     
     return address.join(", ")
 }
-console.log(getAddress("1101090310730001"))
+console.log(getAddress("1101090312740001"))
+// Trumon, KAB. ACEH SELATAN, ACEH
 </script>
 ```
 
