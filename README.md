@@ -5,6 +5,8 @@ Indonesian territory data in JavaScript
 
 ## Usage
 
+### NIK to Address
+
 ```html
 <!-- put this before your code -->
 <script src="https://cdn.jsdelivr.net/gh/codenoid/Data-Wilayah.js/wilayah.js" type="text/javascript"></script>
@@ -40,6 +42,46 @@ function getAddress(nik) {
 console.log(getAddress("1101090312740001"))
 // Trumon, KAB. ACEH SELATAN, ACEH
 </script>
+```
+
+### Use with select
+
+```javascript
+for (const [key, value] of Object.entries(ID_PROVINSI)) {
+    $("#province_id").append(`<option value="${key}">${value}</option>`)
+}
+$("#province_id").on('change', function() {
+    var province_id = $(this).val()
+    $("#district_id").html('<option value="" selected>Unknown</option>')
+    if (ID_KABUPATEN[province_id] != undefined) {
+        for (const [key, value] of Object.entries(ID_KABUPATEN[province_id])) {
+            $("#district_id").append(`<option value="${key}">${value}</option>`)
+        }
+        $("#subdistrict_id").html('<option value="" selected>Unknown</option>')
+        $("#village_id").html('<option value="" selected>Unknown</option>')
+    }
+})
+$("#district_id").on('change', function() {
+    var province_id = $("#province_id").val()
+    var district_id = province_id + "." + $(this).val()
+    $("#subdistrict_id").html('<option value="" selected>Unknown</option>')
+    if (ID_KECAMATAN[district_id] != undefined) {
+        for (const [key, value] of Object.entries(ID_KECAMATAN[district_id])) {
+            $("#subdistrict_id").append(`<option value="${key}">${value}</option>`)
+        }
+        $("#village_id").html('<option value="" selected>Unknown</option>')
+    }
+})
+$("#subdistrict_id").on('change', function() {
+    var province_id = $("#province_id").val()
+    var district_id = province_id + "." + $(this).val()
+    $("#village_id").html('<option value="" selected>Unknown</option>')
+    if (ID_KECAMATAN[district_id] != undefined) {
+        for (const [key, value] of Object.entries(ID_KECAMATAN[district_id])) {
+            $("#village_id").append(`<option value="${key}">${value}</option>`)
+        }
+    }
+})
 ```
 
 ## Source
