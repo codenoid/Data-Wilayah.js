@@ -53,6 +53,7 @@ for (const [key, value] of Object.entries(ID_PROVINSI)) {
 $("#province_id").on('change', function() {
     var province_id = $(this).val()
     $("#district_id").html('<option value="" selected>Unknown</option>')
+    // bawa province_id untuk list kabupaten
     if (ID_KABUPATEN[province_id] != undefined) {
         for (const [key, value] of Object.entries(ID_KABUPATEN[province_id])) {
             $("#district_id").append(`<option value="${key}">${value}</option>`)
@@ -65,6 +66,7 @@ $("#district_id").on('change', function() {
     var province_id = $("#province_id").val()
     var district_id = province_id + "." + $(this).val()
     $("#subdistrict_id").html('<option value="" selected>Unknown</option>')
+    // bawa district_id untuk list kecamatan
     if (ID_KECAMATAN[district_id] != undefined) {
         for (const [key, value] of Object.entries(ID_KECAMATAN[district_id])) {
             $("#subdistrict_id").append(`<option value="${key}">${value}</option>`)
@@ -74,10 +76,13 @@ $("#district_id").on('change', function() {
 })
 $("#subdistrict_id").on('change', function() {
     var province_id = $("#province_id").val()
-    var district_id = province_id + "." + $(this).val()
+    var district_id = $("#district_id").val()
+    var subdistrict_id = `${province_id}.${district_id}.${$(this).val()}`
+    console.log(subdistrict_id)
     $("#village_id").html('<option value="" selected>Unknown</option>')
-    if (ID_KECAMATAN[district_id] != undefined) {
-        for (const [key, value] of Object.entries(ID_KECAMATAN[district_id])) {
+    // bawa province_id + district_id + subdistrict_id untuk list desa/village
+    if (ID_DESA[subdistrict_id] != undefined) {
+        for (const [key, value] of Object.entries(ID_DESA[subdistrict_id])) {
             $("#village_id").append(`<option value="${key}">${value}</option>`)
         }
     }
